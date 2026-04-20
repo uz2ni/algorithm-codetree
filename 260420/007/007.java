@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String name = sc.next();
-        char point = sc.next().charA
+        char point = sc.next().charAt(0);
         int time = sc.nextInt();
         Code code = new Code(name,point,time);
         code.print();
