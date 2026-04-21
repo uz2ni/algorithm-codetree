@@ -7,45 +7,30 @@ public class Main {
         int m2 = sc.nextInt(); // 5
         int d2 = sc.nextInt();
 
-        int[] monthDates = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+        String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
-        // 차이 일자 계산
-        int date;
+        int diff = numOfDays(m2,d2) - numOfDays(m1,d1);
+        
+        while(diff < 0) diff += 7; // 음수는 양수가 될때까지 +7 해주면 동일한 요일 인덱스 구해짐
 
-        if(m1 == m2) { // 현재 월
-            
-            date = d2 - d1;
+        System.out.print(days[diff % 7]);
+        
+    }
 
-        }else if(d1 < d2) { // 현재 이후
+    // 1월 1일부터 주어진 일자 간 차이 계산
+    public static int numOfDays(int m, int d) {
+        int[] monthDates = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        
+        int totalDays = 0;
 
-            date = (monthDates[m1-1] - d1) + d2; // 시작+종료 일수 합산
-            for(int i=m1; i<m2-1; i++) {
-                date += monthDates[i]; // 중간월 일수 합산
-            }
-
-        }else { // 현재 이전
-
-            date = (monthDates[m2-1] - d2) + d1; // 시작+종료 일수 합산
-            for(int i=m2; i<m1-1; i++) {
-                date += monthDates[i]; // 중간월 일수 합산
-            }
-            
-            date = date * (-1);
+        // 이전 월 일자 합산
+        for(int i=1; i<m; i++) {
+            totalDays += monthDates[i];
         }
 
-        // 요일 계산
-        if(date < 0) {
-            
-            int idx = (days.length + date + 1) % 7;
-            System.out.println(days[idx]);
+        // 해당 월 일자 합
+        totalDays += d;
 
-        }else {
-            
-            int idx = (date+1) % 7;
-            System.out.println(days[idx]);
-        }
-
-
+        return totalDays;
     }
 }
