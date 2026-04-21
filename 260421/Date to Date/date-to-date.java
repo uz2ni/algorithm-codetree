@@ -8,20 +8,29 @@ public class Main {
         int d2 = sc.nextInt();
 
         int[] monthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        
-        // 시작 월 계산
-        int start = monthDays[m1-1] - d1 + 1;
-        
-        // 종료 월 계산
-        int end = d2;
 
-        // 중간 월 계산
-        int mid = 0;
-        for(int i=m1; i<m2-1; i++) {
-            mid += monthDays[i];
+        // 같은 월
+        if(m1 == m2) {
+            
+            System.out.print(d2 - d1 + 1);
+
+        }else {
+            // 시작 월 계산
+            int start = monthDays[m1-1] - d1 + 1;
+            
+            // 종료 월 계산
+            int end = d2;
+
+            // 중간 월 계산
+            int mid = 0;
+            for(int i=m1; i<m2-1; i++) {
+                mid += monthDays[i];
+            }
+
+            System.out.print(start+end+mid);
         }
+        
 
-        System.out.print(start+end+mid);
 
     }
 }
