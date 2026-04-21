@@ -10,9 +10,10 @@ public class Main {
             int x = sc.nextInt();
             a[i] = new Point(i, x);
         }   
-        b = Arrays.copyOfRange(a, 0, n);
 
-        // b 정렬
+        /* sol 1 */
+        /*
+        b = Arrays.copyOfRange(a, 0, n);
         Arrays.sort(b, (p1, p2) -> {
             if(p1.x != p2.x) {
                 return p1.x - p2.x;
@@ -28,6 +29,27 @@ public class Main {
                 }
             }
         }
+        */
+
+        /* sol 2 */
+        Arrays.sort(a, (p1, p2) -> {
+            if(p1.x != p2.x) {
+                return p1.x - p2.x;
+            }
+            return p1.index - p2.index;
+        });
+
+        int[] result = new int[n];
+        
+        // 정렬된 값의 index 위치 result에 순위 기입
+        for(int i=0; i<n; i++) {
+            result[a[i].index] = i+1;
+        }
+
+        for(int i : result) {
+            System.out.print(i + " ");
+        }
+
     }
 
     public static class Point {
