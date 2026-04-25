@@ -13,9 +13,9 @@ public class Main {
         for(int i=0; i<N; i++) {
             int v = sc.nextInt();
             int t = sc.nextInt();
-            float distanceByHour = (float)t/(v*t);
             for(int j=0; j<t; j++) {
-                n[time] = (sum + distanceByHour);
+                sum += v;
+                n[time] = sum;
                 time++;
             }
             hour += t;
@@ -26,9 +26,9 @@ public class Main {
         for(int i=0; i<M; i++) {
             int v = sc.nextInt();
             int t = sc.nextInt();
-            float distanceByHour = (float)t/(v*t);
             for(int j=0; j<t; j++) {
-                m[time] = (sum + distanceByHour);
+                sum += v;
+                m[time] = sum;
                 time++;
             }
         }
