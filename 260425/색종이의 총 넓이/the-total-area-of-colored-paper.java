@@ -11,8 +11,8 @@ public class Main {
         int result = 0;
 
         for(int i=0; i<N; i++) {
-            int x1 = sc.nextInt();
-            int y1 = sc.nextInt();
+            int x1 = sc.nextInt()+offset;
+            int y1 = sc.nextInt()+offset;
             int x2 = x1+8;
             int y2 = y1+8;
 
