@@ -2,26 +2,27 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        int ax1 = sc.nextInt();
-        int ay1 = sc.nextInt();
-        int ax2 = sc.nextInt();
-        int ay2 = sc.nextInt();
-
-        int bx1 = sc.nextInt();
-        int by1 = sc.nextInt();
-        int bx2 = sc.nextInt();
-        int by2 = sc.nextInt();
-
-        int mx1 = sc.nextInt();
-        int my1 = sc.nextInt();
-        int mx2 = sc.nextInt();
-        int my2 = sc.nextInt();
 
         int offset = 1000;
         final int MAX_VALUE = (offset*2)+1;
         boolean[][] visited = new boolean[MAX_VALUE][MAX_VALUE];
         int result = 0;
+
+        
+        int ax1 = sc.nextInt()+offset;
+        int ay1 = sc.nextInt()+offset;
+        int ax2 = sc.nextInt()+offset;
+        int ay2 = sc.nextInt()+offset;
+
+        int bx1 = sc.nextInt()+offset;
+        int by1 = sc.nextInt()+offset;
+        int bx2 = sc.nextInt()+offset;
+        int by2 = sc.nextInt()+offset;
+
+        int mx1 = sc.nextInt()+offset;
+        int my1 = sc.nextInt()+offset;
+        int mx2 = sc.nextInt()+offset;
+        int my2 = sc.nextInt()+offset;
 
         // A, B 좌표 visited true
         for(int i=ay1; i<ay2; i++) {
