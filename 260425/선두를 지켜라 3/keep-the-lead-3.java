@@ -1,51 +1,52 @@
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int M = sc.nextInt();
-        float[] n = new float[1000000];
-        float[] m = new float[1000000];
+
+        // 1. 오차 방지를 위해 long 배열 사용
+        long[] n = new long[1000001];
+        long[] m = new long[1000001];
         
-        float sum = 0;
-        int time = 0;
-        int hour = 0;
+        int timeN = 0;
+        long sumN = 0;
         for(int i=0; i<N; i++) {
             int v = sc.nextInt();
             int t = sc.nextInt();
             for(int j=0; j<t; j++) {
-                sum += v;
-                n[time] = sum;
-                time++;
+                sumN += v;
+                n[timeN++] = sumN;
             }
-            hour += t;
         }
 
-        sum = 0;
-        time = 0;
+        int timeM = 0;
+        long sumM = 0;
         for(int i=0; i<M; i++) {
             int v = sc.nextInt();
             int t = sc.nextInt();
             for(int j=0; j<t; j++) {
-                sum += v;
-                m[time] = sum;
-                time++;
+                sumM += v;
+                m[timeM++] = sumM;
             }
         }
 
+        // 두 사람 중 더 긴 시간을 기준으로 함 (보통은 같게 주어짐)
+        int totalHour = Math.max(timeN, timeM);
+        
         int cnt = 0;
         int history = -1;
-        for(int i=0; i<hour; i++) {
-            int cur = -1;
-            if(n[i] < m[i]) {
-                cur = 1;
-            }else if(n[i] > m[i]) {
-                cur = 2;
-            }else {
-                cur = 0;
-            }
-            
-            if(history != cur) {
+
+        for(int i=0; i < totalHour; i++) {
+            int cur;
+            if(n[i] > m[i])      cur = 1; // A가 선두
+            else if(n[i] < m[i]) cur = 2; // B가 선두
+            else                 cur = 0; // 공동 선두
+
+            if(i == 0) {
+                history = cur;
+            } else if(history != cur) {
                 cnt++;
                 history = cur;
             }
