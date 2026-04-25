@@ -38,10 +38,12 @@ public class Main {
 
         // visited true 표시된 최소 최대 점 구해서 넓이 구하기
         int maxX=0, maxY=0, minX = MAX_VALUE-1, minY = MAX_VALUE-1;
-    
+        boolean visitedCheck = false;
+        
         for(int i=0; i<visited.length; i++) {
             for(int j=0; j<visited[0].length; j++) {
                 if(visited[j][i]) {
+                    visitedCheck = true;
                     maxX = Math.max(maxX, j);
                     minX = Math.min(minX, j);
                     maxY = Math.max(maxY, i);
@@ -50,6 +52,6 @@ public class Main {
             }
         }
 
-        System.out.println((maxX+1-minX)*(maxY+1-minY));
+        System.out.println(visitedCheck ? (maxX+1-minX)*(maxY+1-minY) : 0);
     }
 }
