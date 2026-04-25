@@ -4,8 +4,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int M = sc.nextInt();
-        float[] n = new float[1000];
-        float[] m = new float[1000];
+        float[] n = new float[1000000];
+        float[] m = new float[1000000];
         
         float sum = 0;
         int time = 0;
