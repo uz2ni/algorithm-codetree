@@ -11,19 +11,25 @@ public class Main {
         // Please write your code here.
 
         int[][] visited = new int[n][m];
-        dfs(grid, 0, 0, n, m, visited);
+        boolean result = dfs(grid, 0, 0, n, m, visited);
+        System.out.println(result ? "1" : "0");
         
-        System.out.println(visited[n-1][m-1]);
         
     }
 
-    public static void dfs(int[][] grid, int x, int y, int n, int m, int[][] visited) {
-        
+    public static boolean dfs(int[][] grid, int x, int y, int n, int m, int[][] visited) {
+
+        // basecase
+        if(x==(n-1) && y==(m-1)) {
+            return true;
+        }
+
         visited[x][y] = 1;
 
         int[] dc = {0, 1}; // x,n 방향
         int[] dr = {1, 0}; // y,m 방향
         
+        // recursion
         for(int i=0; i<2; i++) {
             int nc = x+dc[i];
             int nr = y+dr[i];
@@ -31,10 +37,12 @@ public class Main {
             // 좌표 이내, grid 값 1, visited 아님
             if(0<=nc && nc<n && 0<=nr && nr<m) {
                 if(grid[nc][nr]==1 && (visited[nc][nr]==0)) {
-                    dfs(grid, nc, nr, n, m, visited);
+                    if(dfs(grid, nc, nr, n, m, visited)) {
+                        return true;
+                    }
                 }
             }
         }
-        
+        return false;
     }
 }
